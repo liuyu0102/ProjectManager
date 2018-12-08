@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularJs入门-循环遍历 ng-repeat</title>
+    <!--引入js插件-->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+        /*定义模块
+        *   第一个参数,模块名  第二个参数  其他依赖模块*/
+        var app = angular.module("myapp",[]);
+        /*定义控制器
+        * 第一个参数:控制器名,第二个参数,函数中声明全局域$scope
+        **/
+        app.controller("myctrl",function ($scope) {
+           $scope.List=[
+               {name:"张三",java:20,python:20},
+               {name:"李四",java:10,python:50},
+               {name:"王五",java:80,python:70}
+           ]
+        })
+    </script>
+</head>
+<body >
+<div ng-app="myapp" ng-controller="myctrl">
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>java</td>
+            <td>python</td>
+        </tr>
+        <tr ng-repeat="user in List">
+            <td>{{user.name}}</td>
+            <td>{{user.java}}</td>
+            <td>{{user.python}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

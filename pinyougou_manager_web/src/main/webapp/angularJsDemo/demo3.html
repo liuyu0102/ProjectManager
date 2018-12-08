@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularJs入门-mvc,模块,控制器</title>
+    <!--引入js插件-->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+        /*定义模块
+        *   第一个参数,模块名  第二个参数  其他依赖模块*/
+        var app = angular.module("myapp",[]);
+        /*定义控制器
+        * 第一个参数:控制器名,第二个参数,函数中声明全局域$scope
+        **/
+        app.controller("myctrl",function ($scope) {
+            $scope.myname="张三";
+        })
+    </script>
+</head>
+<body >
+<div ng-app="myapp" ng-controller="myctrl">
+    请输入您的姓名:<input type="text" ng-model="myname"> <br>
+    {{myname}}
+</div>
+</body>
+</html>
