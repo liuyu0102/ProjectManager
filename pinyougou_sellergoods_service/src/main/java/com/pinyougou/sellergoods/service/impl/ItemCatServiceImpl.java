@@ -77,7 +77,12 @@ public class ItemCatServiceImpl implements ItemCatService {
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
-			itemCatMapper.deleteByPrimaryKey(id);
+			List<TbItemCat> list = findByParentId(id);
+			if (list != null && list.size() > 0){
+				throw new RuntimeException("有子数据关联时不能删除");
+			}else {
+				itemCatMapper.deleteByPrimaryKey(id);
+			}
 		}		
 	}
 	

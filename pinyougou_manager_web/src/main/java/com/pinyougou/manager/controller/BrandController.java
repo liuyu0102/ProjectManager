@@ -25,7 +25,7 @@ public class BrandController {
     private BrandService brandService;
 
     /**
-     * 同条件查询分页展示
+     * 搜索条件查询分页展示
      * @param brand
      * @param pageNum
      * @param pageSize

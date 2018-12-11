@@ -14,10 +14,24 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!--angularJs资源插件-->
+	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+	<!--引入分页插件资源-->
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
+	<!--引入基础模块-->
+	<script type="text/javascript" src="../js/base_pagination.js"></script>
+	<!--引入service-->
+	<script type="text/javascript" src="../js/service/sellerService.js"></script>
+	<!--引入baseController-->
+	<script type="text/javascript" src="../js/controller/baseController.js"></script>
+	<!--引入controller-->
+	<script type="text/javascript" src="../js/controller/sellerController.js"></script>
     
 </head>
 
-<body class="hold-transition skin-red sidebar-mini"  >
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="sellerController" ng-init="searchEntity={status:'0'}" >
   <!-- .box-body -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -57,34 +71,24 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr>
+			                          <tr ng-repeat="pojo in list">
 			                              <td><input  type="checkbox"></td>			                              
-				                          <td>1</td>
-									      <td>梦琪琪商贸有限公司</td>
-									      <td>梦琪琪</td>
-									      <td>李梦琪</td>
-									      <td>13402312232</td>
+				                          <td>{{pojo.sellerId}}</td>
+									      <td>{{pojo.name}}</td>
+									      <td>{{pojo.nickName}}</td>
+									      <td>{{pojo.linkmanName}}</td>
+									      <td>{{pojo.linkmanMobile}}</td>
 		                                 
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#sellerModal" >详情</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" ng-click="findOne(pojo.sellerId)" data-toggle="modal" data-target="#sellerModal" >详情</button>
 		                                  </td>
 			                          </tr>
-									  <tr>
-			                              <td><input  type="checkbox"></td>			                              
-				                          <td>2</td>
-									      <td>黑瞎子苹果专卖店</td>
-									      <td>黑瞎子</td>
-									      <td>孙大鹏</td>
-									      <td>13622244111</td>
-		                                  
-		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#sellerModal" >详情</button>                                           
-		                                  </td>
-			                          </tr>
+
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                        
-							  
+			                  <!--数据列表/-->
+							<!--分页工具条展示-->
+							<tm-pagination conf="paginationConf"></tm-pagination>
 							 
                         </div>
                         <!-- 数据表格 /-->
@@ -123,7 +127,7 @@
 			      <table class="table table-bordered table-striped"  width="800px">
 			      	<tr>
 			      		<td>公司名称</td>
-			      		<td>美琪数码经营店</td>
+			      		<td>{{entity.name}}</td>
 			      	</tr>
 			      	<tr>
 			      		<td>公司手机</td>
@@ -213,10 +217,10 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">审核通过</button>
-         	<button class="btn btn-danger"  data-dismiss="modal" aria-hidden="true">审核未通过</button>
-            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">关闭商家</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+			<button class="btn btn-success" ng-click="updateStatus('1')" data-dismiss="modal" aria-hidden="true">审核通过</button>
+         	<button class="btn btn-danger" ng-click="updateStatus('2')" data-dismiss="modal" aria-hidden="true">审核未通过</button>
+            <button class="btn btn-danger" ng-click="updateStatus('3')" data-dismiss="modal" aria-hidden="true">关闭商家</button>
+			<button class="btn btn-default" data-dismiss="modal"    aria-hidden="true">关闭</button>
 		</div>
 	  </div>
 	</div>

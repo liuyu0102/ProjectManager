@@ -16,13 +16,11 @@
 
 	<!--angularJs资源插件-->
 	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
-	<!--引入分页插件资源-->
-	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
-	<script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
 	<!--引入基础模块-->
-	<script type="text/javascript" src="../js/base_pagination.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
 	<!--引入service-->
 	<script type="text/javascript" src="../js/service/itemCatService.js"></script>
+	<script type="text/javascript" src="../js/service/typeTemplateService.js"></script>
 	<!--引入baseController-->
 	<script type="text/javascript" src="../js/controller/baseController.js"></script>
 	<!--引入controller-->
@@ -30,7 +28,7 @@
     
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="itemCatController" ng-init="findByParentId(0)">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="itemCatController" ng-init="findByParentId(0);findTypeTemplateList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -41,13 +39,13 @@
                     <div class="box-body">
                   			 <ol class="breadcrumb">	                        	
                         		<li>
-		                        	<a href="#" >顶级分类列表</a> 
+		                        	<a href="#" ng-click="grade=1;selectItemCatList({id:0})" >顶级分类列表</a>
 		                        </li>
 		                        <li>
-		                       		<a href="#" >珠宝</a>
+		                       		<a href="#" ng-click="grade=2;selectItemCatList(entity_1)" >{{entity_1.name}}</a>
 		                        </li>
 		                        <li>
-		                        	<a href="#" >银饰</a>
+		                        	<a href="#" ng-click="grade=3;selectItemCatList(entity_2)" >{{entity_2.name}}</a>
 		                        </li>
 	                        </ol>
 
@@ -58,8 +56,8 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" ng-click="entity={}" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" ng-click="dele()" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-check"></i> 刷新</button>
                                        
                                     </div>
@@ -83,15 +81,15 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="pojo in list">
-			                              <td><input  type="checkbox" ></td>			                              
+			                              <td><input  type="checkbox" ng-click="updateSelection($event,pojo.id)" ></td>
 				                          <td>{{pojo.id}}</td>
 									      <td>{{pojo.name}}</td>
 									      <td>
 											  {{pojo.typeId}}
 									      </td>									      
 		                                  <td class="text-center">		                                     
-		                                      <button type="button" ng-click="findByParentId(pojo.id)" class="btn bg-olive btn-xs" >查询下级</button>
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
+		                                      <button type="button" ng-click="setGrade(grade+1);selectItemCatList(pojo)" ng-if="grade != 3" class="btn bg-olive btn-xs" >查询下级</button>
+		                                 	  <button type="button" class="btn bg-olive btn-xs" ng-click="findOne(pojo.id)" data-toggle="modal" data-target="#editModal" >修改</button>
 		                                  </td>
 			                          </tr>
 
@@ -123,24 +121,25 @@
 				<tr>
 		      		<td>上级商品分类</td>
 		      		<td>
-		      		   珠宝 >>  银饰
+                        顶级分类列表 <span ng-if="grade>=2">>></span> {{entity_1.name}} <span ng-if="grade==3">>></span> {{entity_2.name}}
 		      		</td>
 		      	</tr>
 		      	<tr>
 		      		<td>商品分类名称</td>
-		      		<td><input  class="form-control" placeholder="商品分类名称">  </td>
+		      		<td><input  class="form-control" ng-model="entity.name" placeholder="商品分类名称">  </td>
 		      	</tr>			  
 		      	<tr>
 		      		<td>类型模板</td>
-		      		<td>	      		
-		      			<input select2 config="options['type_template']" placeholder="商品类型模板" class="form-control" type="text"/>
+		      		<td>
+                        <select placeholder="商品类型模板" class="form-control" ng-model="entity.typeId" ng-options="template.id as template.name for template in templateList" ></select>
+                        <!--<input select2 config="options['type_template']" placeholder="商品类型模板" class="form-control" type="text"/>-->
 		      		</td>		      		      		
 		      	</tr>		      	
 			 </table>				
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" ng-click="save()" data-dismiss="modal" aria-hidden="true">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
