@@ -15,6 +15,25 @@
         <module>pinyougou_manager_web</module>
         <module>pinyougou_shop_web</module>
         <module>pinyougou_common</module>
+        <module>pinyougou_content_interface</module>
+        <module>pinyougou_content_service</module>
+        <module>pinyougou_portal_web</module>
+        <module>pinyougou_solr_util</module>
+        <module>pinyougou_search_interface</module>
+        <module>pinyougou_search_service</module>
+        <module>pinyougou_search_web</module>
+        <module>pinyougou_page_interface</module>
+        <module>pinyougou_page_service</module>
+        <module>pinyougou_page_web</module>
+        <module>pinyougou_sms</module>
+        <module>pinyougou_user_interface</module>
+        <module>pinyougou_user_service</module>
+        <module>pinyougou_user_web</module>
+        <module>pinyougou_cart_interface</module>
+        <module>pinyougou_cart_service</module>
+        <module>pinyougou_cart_web</module>
+        <module>pinyougou_order_interface</module>
+        <module>pinyougou_order_service</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
@@ -260,6 +279,7 @@
                 <artifactId>xml-apis</artifactId>
                 <version>1.4.01</version>
             </dependency>
+
         </dependencies>
 
     </dependencyManagement>

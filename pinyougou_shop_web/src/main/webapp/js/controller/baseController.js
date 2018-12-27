@@ -51,5 +51,15 @@ app.controller("baseController",function($scope){
 		
 		return value;
 	};
+	//定义判断是否存在规格名称的通用方法方法
+	$scope.getObjectByKey = function (list, key, value) {
+		//[{"attributeName":"网络","attributeValue":["移动3G","移动4G"]},{}]
+		for(var i = 0; i < list.length; i++){
+			if(list[i][key] == value){
+				return list[i];
+			}
+		}
+		return null;
+    }
 
 });

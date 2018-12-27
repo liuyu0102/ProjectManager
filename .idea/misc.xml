@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../casClient1" />
+    <file type="web" url="file://$PROJECT_DIR$/../casClient2" />
+    <file type="web" url="file://$PROJECT_DIR$/../casClient_securityCAS" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_cart_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_cart_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_content_service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_manager_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_order_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_page_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_page_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_portal_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_search_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_search_web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_sellergoods_service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_shop_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_sms" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_user_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_user_web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../springDataRedis/pom.xml" />
+        <option value="$PROJECT_DIR$/../freeMarker_Demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../activeMQ_Spring_Demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../httpClient_Demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../casClient1/pom.xml" />
+        <option value="$PROJECT_DIR$/../casClient2/pom.xml" />
+        <option value="$PROJECT_DIR$/../casClient_securityCAS/pom.xml" />
       </list>
     </option>
   </component>

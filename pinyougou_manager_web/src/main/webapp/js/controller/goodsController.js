@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller   ,goodsService,itemCatService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -75,5 +75,33 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
+    $scope.status = ['未审核','已审核','审核未通过','关闭'];
+    //定义查询所有分类的方法
+    //声明数组
+    $scope.itemCatList = [];
+    $scope.selectItemCatList = function () {
+        itemCatService.findAll().success(function (response) {
+            //遍历得到的分类列表
+            for(var i = 0; i < response.length; i++){
+                //定义数组,数组结构为  itemCatList[分类id] = 分类名
+                $scope.itemCatList[response[i].id] = response[i].name
+            }
+        })
+    }
+
+    //批量审核
+    $scope.updateStatus=function(status){
+        //获取选中的复选框
+        goodsService.updateStatus( $scope.selectIds ,status).success(
+            function(response){
+                if(response.success){
+                    $scope.reloadList();//刷新列表
+                    $scope.selectIds = [];
+                }else {
+                	alert(response.message)
+				}
+            }
+        );
+    }
     
 });	

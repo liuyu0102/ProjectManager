@@ -6,6 +6,7 @@ import com.pinyougou.pojo.TbItem;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Liuyu
@@ -19,6 +20,16 @@ public class Goods implements Serializable {
     private TbGoodsDesc goodsDesc;
 
     private List<TbItem> itemList;
+    //三个级别分类名称集合
+    private Map<String,String> categoryMap;
+
+    public Map<String, String> getCategoryMap() {
+        return categoryMap;
+    }
+
+    public void setCategoryMap(Map<String, String> categoryMap) {
+        this.categoryMap = categoryMap;
+    }
 
     public TbGoods getGoods() {
         return goods;
